@@ -19,10 +19,13 @@ hill_equation = System(m_A, m_B, m_K)
 ic = np.array([1, 1, 1, 1, 1, 1])
 times = np.linspace(0, 10, 100)
 sol = hill_equation.solution(ic, times)
+v_u = m_K.dot(sol.T)
+
 
 
 # Plotting
 sx, sy, sz, sx_dot, sy_dot, sz_dot = sol.T
+u_x, u_y, u_z = v_u
 
 fig, axs = plt.subplots(2)
 fig.suptitle('Plots')
@@ -37,5 +40,14 @@ axs[1].plot(times, sy_dot)
 axs[1].plot(times, sz_dot)
 axs[1].legend(['x_dot', 'y_dot', 'z_dot'])
 axs[1].set_title('velocity')
-# plt.savefig('plots.png')
+
+plt.savefig('plots_state.png')
+plt.show()
+
+plt.plot(times, u_x)
+plt.plot(times, u_y)
+plt.plot(times, u_z)
+plt.legend(['x-force', 'y-force', 'z-force'])
+plt.title('control')
+plt.savefig('plots_control.png')
 plt.show()

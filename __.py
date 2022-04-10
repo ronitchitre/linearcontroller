@@ -12,12 +12,11 @@ m_B = np.array([[0, 0, 0], [0, 0, 0], [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]
 # Feedback Gain
 m_K = np.array([[30, 0, 0, 11, 0, 2], [0, 5, 0, 0, 5, 0], [0, 0, 7, -2, 0, 5]])
 
-
 hill_equation = System(m_A, m_B, m_K)
 
 
 ic = np.array([1, 1, 1, 1, 1, 1])
-times = np.linspace(0, 10, 100)
+times = np.linspace(0, 10, 2000)
 sol = hill_equation.solution(ic, times)
 v_u = m_K.dot(sol.T)
 
